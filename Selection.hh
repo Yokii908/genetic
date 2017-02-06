@@ -5,7 +5,7 @@
 #include <Vector>
 #include <algorithm>
 
-bool startSelection(Population&, std::string);
+bool startSelection(Population*, std::string);
 
 Entity crossOver(std::vector<int>, Population&);
 void mutation(Entity&);
