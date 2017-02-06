@@ -8,8 +8,9 @@ int main(int argc, char *argv[])
 	{
 		srand(time(NULL));
 		std::string target = argv[1];
-		Population *test = new Population(1000, target.length());
+		Population *test = new Population(500, target.length());
 		startSelection(test, target);
+		//delete test;
 	}
 	else
 	{

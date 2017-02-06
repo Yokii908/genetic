@@ -23,6 +23,11 @@ bool startSelection(Population *population, std::string target)
 	for (int j = 0 ; j < population->getNbrElements() / 2 ; j++)
 	{
 		NewEntities[j] = crossOver(probabilityMappedList, *population);
+		while (NewEntities[j].getDna().length() == 0)
+		{
+			//std::cout << "EMPTY" << std::endl;
+			NewEntities[j] = crossOver(probabilityMappedList, *population);
+		}
 	}
 
 	Population *NewPopulation = new Population(population->getNbrElements(), population->getNbrElements() / 2, target.length(), NewEntities);
@@ -30,13 +35,17 @@ bool startSelection(Population *population, std::string target)
 	for (int i = 0 ; i < population->getNbrElements() / 2 ; i++)
 	{
 		std::cout << NewPopulation->_elements[i].getDna() << std::endl;
+		/*if (NewPopulation->_elements[i].getDna().length() == 0)
+		{
+			std::cout << "empty" << std::endl;
+		}*/
 	}
 
-	//delete &population;
 	delete[] NewEntities;
 
 	startSelection(NewPopulation, target);
 
+	//delete NewPopulation;
 	return (false);
 }
 
@@ -50,13 +59,13 @@ Entity crossOver(std::vector<int> v, Population &population)
 	}
 	else
 	{
-		std::string DnaFinal = "";
+		//std::string DnaFinal = "";
 		int MiddleOfString = FirstParent.getDna().length() / 2 + (FirstParent.getDna().length() % 2);
 
 		std::string FirstHalf = FirstParent.getDna().substr(0, MiddleOfString);
 		std::string SecondHalf = SecondParent.getDna().substr(MiddleOfString, MiddleOfString);
 
-		for (int i = 0 ; i < FirstParent.getDna().length() ; i++)
+		/*for (int i = 0 ; i < FirstParent.getDna().length() ; i++)
 		{
 			if (i % 2 == 0)
 			{
@@ -66,11 +75,17 @@ Entity crossOver(std::vector<int> v, Population &population)
 			{
 				DnaFinal += SecondParent.getDna()[i];
 			}
-		}
+		}*/
 
-		//std::string DnaFinal = FirstHalf + SecondHalf;
+		std::string DnaFinal = FirstHalf + SecondHalf;
 
 		Entity Child = Entity(DnaFinal);
+
+		if (Child.getDna().length() == 0)
+		{
+			std::cout << "WTF" << std::endl;
+		}
+
 		mutation(Child);
 		return (Child);
 	}

@@ -6,7 +6,7 @@ Entity::Entity(int length): _dna(""),  _dnaLength(length), _potential(0)
 {
 	for (int i = 0 ; i < this->_dnaLength ; i++)
 	{
-		char c = (char)(rand() % (127 - 32) + 32);
+		char c = (char)(rand() % (127 - 32)) + 32;
 		this->_dna += c;
 	}
 }
@@ -50,7 +50,7 @@ void Entity::setDna(std::string NewDna)
 
 void Entity::setPartialDna(int index)
 {
-	this->_dna[index] = (char)(rand() % (127 - 32) + 32);
+	this->_dna[index] = (char)(rand() % (127 - 32)) + 32;
 }
 
 void Entity::setPotential(int NewPotential)
