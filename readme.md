@@ -1,4 +1,4 @@
-# TITLE
+# Basic Genetic Algorithm
 
 ### Description
 This project is a basic genetic algorithm that guesses a string passed as argument.
