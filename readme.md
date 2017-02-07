@@ -21,8 +21,9 @@ All those `Entity` are placed in a matching pool based on their potential. For e
 
 The `Crossover` function randomly picks two parents in the matching pool. It randomly determines a half point and take the first part of the first parent till the half point and the second part of the second parents after the half point.
 For example :
+
 Parent | Dna
-----:----|
+------:|------
 First parent | abcdef
 Second parent |	ghijkl
 Random cut point |	 4
