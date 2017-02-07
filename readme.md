@@ -21,9 +21,8 @@ All those `Entity` are placed in a matching pool based on their potential. For e
 
 The `Crossover` function randomly picks two parents in the matching pool. It randomly determines a half point and take the first part of the first parent till the half point and the second part of the second parents after the half point.
 For example :
-
 Parent | Dna
-------:|------
+----:----|
 First parent | abcdef
 Second parent |	ghijkl
 Random cut point |	 4
@@ -31,4 +30,4 @@ Child parent		|	abcdkl
 
 Once the child is born it has a chance to mutate based on the `mutation_rate` parameter. The mutation is applied to all chromosomes of its Dna. Basically each characters has a chance to be randomly replaced. It helps creating variety in the population. (the mutation rate is usually about 1%. Too much variety introduced in a new generation is not efficient).
 
-When enough children are born a new population is generated and the whole process is recursively called.
+When enough children are born a new population is generated and the whole process is recursively called until a potential equivalent to 100% is found.
