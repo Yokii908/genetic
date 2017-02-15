@@ -3,18 +3,18 @@
 
 #include "Entity.hh"
 
-class Population
-{
-	private:
-		int _nbrElements;
-	public:
-		Entity *_elements;
-		Population(int, int);
-		Population(int, int, int, Entity*);
-		~Population();
-		void displayPopulation() const;
+class Population {
+       private:
+	int _nbrElements;
 
-		int getNbrElements() const;
+       public:
+	Entity *_elements;
+	Population(int, int);
+	Population(int, int, int, Entity *);
+	~Population();
+	void displayPopulation() const;
+
+	int getNbrElements() const;
 };
 
 #endif

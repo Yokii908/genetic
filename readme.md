@@ -1,5 +1,7 @@
 # Basic Genetic Algorithm
 
+> Not freeing 100% of the resources.
+
 ### Description
 This project is a basic genetic algorithm that guesses a string passed as argument.
 
