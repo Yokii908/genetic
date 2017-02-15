@@ -3,8 +3,11 @@
 Entity::Entity() {}
 
 Entity::Entity(int length) : _dna(""), _dnaLength(length), _potential(0) {
-	for (int i = 0; i < this->_dnaLength; i++) {
-		char c = (char)(rand() % (127 - 32)) + 32;
+	int i;
+	char c;
+
+	for (i = 0; i < this->_dnaLength; i++) {
+		c = (char)(rand() % (127 - 32)) + 32;
 		this->_dna += c;
 	}
 }
@@ -19,8 +22,9 @@ std::string Entity::getDna() const { return (this->_dna); }
 
 void Entity::affectPotential(std::string target) {
 	int potential = 0;
+	size_t i;
 
-	for (size_t i = 0; i < target.length(); i++) {
+	for (i = 0; i < target.length(); i++) {
 		if (this->_dna[i] == target[i]) {
 			potential += 1;
 		}
