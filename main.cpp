@@ -2,9 +2,9 @@
 #include "Selection.hh"
 
 int main(int argc, char *argv[]) {
-	Population * test;
 
 	if (argc > 1) {
+		Population * test;
 		srand(time(NULL));
 		std::string target = argv[1];
 		test = new Population(500, target.length());
