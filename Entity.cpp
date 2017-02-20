@@ -3,11 +3,8 @@
 Entity::Entity() {}
 
 Entity::Entity(int length) : _dna(""), _dnaLength(length), _potential(0) {
-	int i;
-	char c;
-
-	for (i = 0; i < this->_dnaLength; i++) {
-		c = (char)(rand() % (127 - 32)) + 32;
+	for (int i = 0; i < this->_dnaLength; i++) {
+		char c = (char)(rand() % (127 - 32)) + 32;
 		this->_dna += c;
 	}
 }
