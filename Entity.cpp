@@ -9,7 +9,7 @@ Entity::Entity(int length) : _dna(""), _dnaLength(length), _potential(0) {
 	}
 }
 
-Entity::Entity(std::string InitDna): _dna(InitDna), _potential(0), _dnaLength(InitDna.length()) {
+Entity::Entity(std::string InitDna): _dna(InitDna), _dnaLength(InitDna.length()), _potential(0) {
 }
 
 std::string Entity::getDna() const { return (this->_dna); }
