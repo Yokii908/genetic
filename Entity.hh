@@ -1,18 +1,19 @@
 #ifndef ENTITY_HH
 #define ENTITY_HH
 
-#include <math.h>
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
+#include <math.h>
 
-class Entity {
-       private:
+class Entity
+{
+	private:
 	std::string _dna;
 	int _dnaLength;
 	int _potential;
 
-       public:
+	public:
 	Entity(int);
 	Entity();
 	Entity(std::string);

@@ -11,6 +11,8 @@ int main(int argc, char *argv[]) {
 		startSelection(test, target);
 		// delete test;
 	} else {
-		std::cout << "fdp" << std::endl;
+		std::cout << "Usage: ./genetic [Target String] " << std::endl;
+		return (1);
 	}
+	return (0);
 }
