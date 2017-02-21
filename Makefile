@@ -2,7 +2,7 @@ SRC	=	Entity.cpp Population.cpp Selection.cpp main.cpp
 OBJ	=	$(SRC:%.cpp=%.o)
 NAME	=	genetic
 CXX	=	g++
-CXXFLAGS=	-Wall -Werror
+CXXFLAGS=	-Wall -Werror --std=c++11
 RM	= rm -f
 
 all: $(NAME)
