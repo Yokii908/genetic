@@ -1,6 +1,6 @@
 #include "Selection.hh"
 
-bool startSelection(Population *population, std::string target) {
+bool startSelection(Population *population, std::string target, int mutationRate) {
 	static int nbPopulation = 0;
 	nbPopulation++;
 
@@ -24,11 +24,11 @@ bool startSelection(Population *population, std::string target) {
 		}
 	}
 	for (int j = 0; j < population->getNbrElements() / 2; j++) {
-		NewEntities[j] = crossOver(probabilityMappedList, *population);
+		NewEntities[j] = crossOver(probabilityMappedList, *population, mutationRate);
 		while (NewEntities[j].getDna().length() == 0) {
 			// std::cout << "EMPTY" << std::endl;
 			NewEntities[j] =
-			    crossOver(probabilityMappedList, *population);
+			    crossOver(probabilityMappedList, *population, mutationRate);
 		}
 	}
 
@@ -46,18 +46,18 @@ bool startSelection(Population *population, std::string target) {
 
 	delete[] NewEntities;
 
-	startSelection(NewPopulation, target);
+	startSelection(NewPopulation, target, mutationRate);
 
 	// delete NewPopulation;
 	return (false);
 }
 
-Entity crossOver(std::vector<int> v, Population &population) {
+Entity crossOver(std::vector<int> v, Population &population, int mutationRate) {
 	Entity FirstParent = population._elements[v[rand() % v.size()]];
 	Entity SecondParent = population._elements[v[rand() % v.size()]];
 
 	if (SecondParent.getDna() == FirstParent.getDna()) {
-		crossOver(v, population);
+		crossOver(v, population, mutationRate);
 	} else {
 		// std::string DnaFinal = "";
 		int MiddleOfString = FirstParent.getDna().length() / 2 +
@@ -88,17 +88,17 @@ Entity crossOver(std::vector<int> v, Population &population) {
 			std::cout << "WTF" << std::endl;
 		}
 
-		mutation(Child);
+		mutation(Child, mutationRate);
 		return (Child);
 	}
 	// replace(Child, population);
 	return (0);
 }
 
-void mutation(Entity &Child) {
+void mutation(Entity &Child, int mutationRate) {
 	for (size_t i = 0; i < Child.getDna().length(); i++) {
 		int randNbr = rand() % 100;
-		if (randNbr < 1) {
+		if (randNbr < mutationRate) {
 			Child.setPartialDna(i);
 		}
 	}

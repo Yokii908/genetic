@@ -5,10 +5,10 @@
 #include <algorithm>
 #include "Population.hh"
 
-bool startSelection(Population*, std::string);
+bool startSelection(Population*, std::string, int);
 
-Entity crossOver(std::vector<int>, Population&);
-void mutation(Entity&);
+Entity crossOver(std::vector<int>, Population&, int);
+void mutation(Entity&, int);
 // void replace(Entity&, Population&);
 
 #endif
