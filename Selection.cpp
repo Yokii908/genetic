@@ -2,6 +2,9 @@
 
 bool startSelection(Population *population, std::string target, int mutationRate) {
 	static int nbPopulation = 0;
+
+	int HighestPotential = 0;
+	int IndexHighestPotential = 0;
 	nbPopulation++;
 
 	Entity *NewEntities = new Entity[population->getNbrElements() / 2];
@@ -14,6 +17,11 @@ bool startSelection(Population *population, std::string target, int mutationRate
 		    probabilityMappedList.end(),
 		    population->_elements[i].getPotential(), i);
 		;
+		if (population->_elements[i].getPotential() > HighestPotential)
+		{
+			HighestPotential = population->_elements[i].getPotential();
+			IndexHighestPotential = i;
+		}
 		if (population->_elements[i].getPotential() ==
 		    pow(target.length(), 2)) {
 			std::cout << population->_elements[i].getDna()
@@ -23,6 +31,9 @@ bool startSelection(Population *population, std::string target, int mutationRate
 			return (true);
 		}
 	}
+
+	std::cout << population->_elements[IndexHighestPotential].getDna() << std::endl;
+
 	for (int j = 0; j < population->getNbrElements() / 2; j++) {
 		NewEntities[j] = crossOver(probabilityMappedList, *population, mutationRate);
 		while (NewEntities[j].getDna().length() == 0) {
@@ -36,13 +47,9 @@ bool startSelection(Population *population, std::string target, int mutationRate
 	    population->getNbrElements(), population->getNbrElements() / 2,
 	    target.length(), NewEntities);
 
-	for (int i = 0; i < population->getNbrElements() / 2; i++) {
+	/*for (int i = 0; i < population->getNbrElements() / 2; i++) {
 		std::cout << NewPopulation->_elements[i].getDna() << std::endl;
-		/*if (NewPopulation->_elements[i].getDna().length() == 0)
-		{
-			std::cout << "empty" << std::endl;
-		}*/
-	}
+	}*/
 
 	delete[] NewEntities;
 
