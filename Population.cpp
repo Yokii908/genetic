@@ -1,22 +1,21 @@
 #include "Population.hh"
 
-Population::Population(int nbrElements, int dnaLength)
-    : _nbrElements(nbrElements) {
+Population::Population(int dnaLength) {
 	int i;
 
 	this->_elements = new Entity[_nbrElements];
-	for (i = 0; i < nbrElements; i++) {
+	for (i = 0; i < POP_SIZE; i++) {
 		this->_elements[i] = Entity(dnaLength);
 	}
 }
 
-Population::Population(int nbrTotalElements, int nbrNewElements, int dnaLength,
+Population::Population(int nbrNewElements, int dnaLength,
 		       Entity *NewPeople) {
 	int i;
 	int j;
 
-	this->_elements = new Entity[nbrTotalElements];
-	this->_nbrElements = nbrTotalElements;
+	this->_elements = new Entity[POP_SIZE];
+	this->_nbrElements = POP_SIZE;
 	for (i = 0; i < nbrNewElements; i++) {
 		this->_elements[i] = NewPeople[i];
 	}

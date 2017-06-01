@@ -1,6 +1,6 @@
 #include "Selection.hh"
 
-bool startSelection(Population *population, std::string target, int mutationRate) {
+bool startSelection(Population *population, std::string target) {
 	static int nbPopulation = 0;
 
 	int HighestPotential = 0;
@@ -35,16 +35,16 @@ bool startSelection(Population *population, std::string target, int mutationRate
 	std::cout << population->_elements[IndexHighestPotential].getDna() << std::endl;
 
 	for (int j = 0; j < population->getNbrElements() / 2; j++) {
-		NewEntities[j] = crossOver(probabilityMappedList, *population, mutationRate);
+		NewEntities[j] = crossOver(probabilityMappedList, *population);
 		while (NewEntities[j].getDna().length() == 0) {
 			// std::cout << "EMPTY" << std::endl;
 			NewEntities[j] =
-			    crossOver(probabilityMappedList, *population, mutationRate);
+			    crossOver(probabilityMappedList, *population);
 		}
 	}
 
 	Population *NewPopulation = new Population(
-	    population->getNbrElements(), population->getNbrElements() / 2,
+	    population->getNbrElements() / 2,
 	    target.length(), NewEntities);
 
 	/*for (int i = 0; i < population->getNbrElements() / 2; i++) {
@@ -53,18 +53,18 @@ bool startSelection(Population *population, std::string target, int mutationRate
 
 	delete[] NewEntities;
 
-	startSelection(NewPopulation, target, mutationRate);
+	startSelection(NewPopulation, target);
 
 	// delete NewPopulation;
 	return (false);
 }
 
-Entity crossOver(std::vector<int> v, Population &population, int mutationRate) {
+Entity crossOver(std::vector<int> v, Population &population) {
 	Entity FirstParent = population._elements[v[rand() % v.size()]];
 	Entity SecondParent = population._elements[v[rand() % v.size()]];
 
 	if (SecondParent.getDna() == FirstParent.getDna()) {
-		crossOver(v, population, mutationRate);
+		crossOver(v, population);
 	} else {
 		// std::string DnaFinal = "";
 		int MiddleOfString = FirstParent.getDna().length() / 2 +
@@ -95,17 +95,17 @@ Entity crossOver(std::vector<int> v, Population &population, int mutationRate) {
 			std::cout << "WTF" << std::endl;
 		}
 
-		mutation(Child, mutationRate);
+		mutation(Child);
 		return (Child);
 	}
 	// replace(Child, population);
 	return (0);
 }
 
-void mutation(Entity &Child, int mutationRate) {
+void mutation(Entity &Child) {
 	for (size_t i = 0; i < Child.getDna().length(); i++) {
 		int randNbr = rand() % 100;
-		if (randNbr < mutationRate) {
+		if (randNbr < MUTATION_RATE) {
 			Child.setPartialDna(i);
 		}
 	}
