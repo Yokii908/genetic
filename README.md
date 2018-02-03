@@ -9,10 +9,10 @@ This project is a basic genetic algorithm that guesses a string passed as argume
 
 `make`
 
-###Usage
+### Usage
 `Usage: ./genetic target population_size mutation_rate`
 
-###Overall method
+### Overall method
 The goal is to guess the `target`parameter based on potential association with a lot of data.
 
 A `Population` object is instanced. It contains an array of `Entity` objects sized after the `population_size` parameter. `Entity` objects contain a `_dna` string typed. 
